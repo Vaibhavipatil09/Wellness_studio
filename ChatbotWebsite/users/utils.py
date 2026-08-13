@@ -23,10 +23,16 @@ def save_picture(form_picture):
 
 
 # function to send the reset password email
+# Returns True on success, False if sending failed (bad credentials, mail
+# server unreachable, etc.) so the caller can show a helpful message
+# instead of the app crashing with a 500 error.
 def send_reset_email(user):
     token = user.get_reset_token()
     msg = Message(
-        "Password Reset Request", sender="noreply@chatbot.com", recipients=[user.email]
+        "Password Reset Request",
+        sender=current_app.config.get("MAIL_DEFAULT_SENDER")
+        or current_app.config.get("MAIL_USERNAME"),
+        recipients=[user.email],
     )
     msg.body = f"""To reset your password, visit the following link:
 {url_for('users.reset_token', token=token, _external=True)}
@@ -34,4 +40,9 @@ Please do not reply to this email and share this email with anyone.
     
 If you did not make this request then simply ignore this email and no changes will be made.
 """
-    mail.send(msg)
+    try:
+        mail.send(msg)
+        return True
+    except Exception as e:
+        current_app.logger.error(f"Failed to send reset email: {e}")
+        return False

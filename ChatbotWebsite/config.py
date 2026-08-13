@@ -15,3 +15,6 @@ class Config:
     MAIL_USE_SSL = False
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
+    # Gmail rejects emails where the "From" address doesn't match the
+    # authenticated account, so the sender must be MAIL_USERNAME itself.
+    MAIL_DEFAULT_SENDER = os.environ.get("MAIL_USERNAME")

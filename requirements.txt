@@ -20,6 +20,7 @@ cryptography==40.0.1
 mysql-connector-python==8.0.32
 Werkzeug==2.2.2
 matplotlib
+python-dotenv==1.0.1
 
 # For MAC
 # autocorrect==2.6.1
