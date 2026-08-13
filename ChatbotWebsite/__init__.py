@@ -39,4 +39,9 @@ def create_app(config_class=Config):
     app.register_blueprint(errors)
     app.register_blueprint(journals)
 
+    # Create database tables if they don't exist yet
+    # (users.db was empty, so login/register failed with "no such table: user")
+    with app.app_context():
+        db.create_all()
+
     return app
