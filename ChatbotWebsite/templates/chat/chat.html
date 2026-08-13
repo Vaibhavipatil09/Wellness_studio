@@ -226,10 +226,45 @@
         text-align: left;
 
         transition: 0.2s ease;
+
+        border: none;
     }
 
     .sidebar-btn:hover {
         transform: translateY(-2px);
+    }
+
+    /* Match the sidebar buttons to the WellBot cyan theme
+       instead of plain Bootstrap info colors */
+
+    .wellbot-sidebar .btn-info.sidebar-btn {
+        color: #fff;
+
+        background: linear-gradient(135deg, #0dcaf0, #087f9f);
+
+        box-shadow: 0 10px 22px rgba(13, 202, 240, 0.25);
+    }
+
+    .wellbot-sidebar .btn-info.sidebar-btn:hover {
+        color: #fff;
+
+        box-shadow: 0 14px 28px rgba(13, 202, 240, 0.3);
+    }
+
+    .wellbot-sidebar .btn-outline-info.sidebar-btn {
+        color: #087f9f;
+
+        background: rgba(255, 255, 255, 0.6);
+
+        border: 1.5px solid rgba(13, 202, 240, 0.45);
+    }
+
+    .wellbot-sidebar .btn-outline-info.sidebar-btn:hover {
+        color: #fff;
+
+        background: linear-gradient(135deg, #0dcaf0, #087f9f);
+
+        border-color: transparent;
     }
 
 
